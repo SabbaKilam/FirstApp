@@ -232,7 +232,9 @@ function init(){
                 o("m").innerHTML = recordCount - 1;
                 nowShowRecord();
             }
-        else alert("Trouble getting Data remotely.");             
+            else { 
+                if ( confirm("Trouble getting Data remotely.\r\rClick OK to try again.") ) init();                
+            }            
         }       
     }
     ajax.send(null);
