@@ -222,34 +222,22 @@ function step(){
 //=================================================
 function init(){
     o("match").focus();
-    ajax.open("GET", "//dl.dropbox.com/u/21142484/_SIT213/FirstWebProject/_/docs/people.csv", false);
-    ajax.send(null);
-    if( ajax.status == 200 || ajax.status == 0 ){
-        records = ajax.responseText.split("\r");
-        recordCount = records.length;
-        o("c").innerHTML = recordPointer;
-        o("m").innerHTML = recordCount - 1;
-        nowShowRecord();
+    ajax.open("GET", "//dl.dropbox.com/u/21142484/_SIT213/FirstWebProject/_/docs/people.csv", true );
+    ajax.onreadystatechange = function() {
+        if ( ajax.readyState == 4 ){
+            if ( ajax.status == 200 || ajax.status == 0 ){
+                records = ajax.responseText.split("\r");
+                recordCount = records.length;
+                o("c").innerHTML = recordPointer;
+                o("m").innerHTML = recordCount - 1;
+                nowShowRecord();
+            }
+        else alert("Trouble getting Data remotely.");             
+        }       
     }
-    else alert("Trouble getting Data remotely.");   
+    ajax.send(null);
 }
 //==============================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
